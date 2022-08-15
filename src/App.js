@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          This is my new React app !
+          This is my new React app on my new branch !!
         </p>
         <a
           className="App-link"
