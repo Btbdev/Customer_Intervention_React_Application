@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import rocketLogo from './rocketLogo.png';
+// import logo from './logo.svg';
+// import './App.css';
 import './routes.js';
+import 'axios';
+// import './pages/Home.js';
+// import './pages/Login.js';
+import Logintest from './pages/Logintest';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={rocketLogo} className="" alt="logo" width="25%" />
         <p>
           This is my new React app on my new branch !!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Logintest />
+        
       </header>
     </div>
   );

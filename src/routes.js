@@ -1,31 +1,32 @@
 import React from "react";
-import { Redirect, Switch, Route, Router } from "react-router-dom";
+import { Navigate, Route, Router } from "react-router-dom";
 import RouteGuard from "./components/RouteGuard";
  
 //history
 import { history } from './helpers/history';
  
 //pages
-import HomePage from "./pages/HomePage"
-import LoginPage from "./pages/Login"
+import Logintest from "./pages/Logintest";
+// import HomePage from "./pages/Home"
+// import LoginPage from "./pages/Login"
  
-function Routes() {
-   return (
-       <Router history={history}>
-           <Switch>
-               <RouteGuard
-                   exact
-                   path="/"
-                   component={HomePage}
-               />
-               <Route
-                   path="/login"
-                   component={LoginPage}
-               />
-               <Redirect to="/" />
-           </Switch>
-       </Router>
-   );
-}
+// function Routes() {
+//    return (
+//        <Router history={history}>
+//            <Routes>
+//                <RouteGuard
+//                    exact
+//                    path="/"
+//                    component={HomePage}
+//                />
+//                <Route
+//                    path="/login"
+//                    component={LoginPage}
+//                />
+//                <Redirect to="/" />
+//            </Routes>
+//        </Router>
+//    );
+// }
  
-export default Routes
+// export default Routes
