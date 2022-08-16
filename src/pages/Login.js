@@ -1,7 +1,25 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from 'axios'
 //import "./Login.css";
+
+
+const LOGIN_URL = 'https://java-api.codeboxxtest.xyz';
+
+const login = async () => {
+    try {
+      const res = await axios.post(`/authenticate?email=${"customer1@business.com"}&password=${"password123"}`)
+  
+      console.log("res is :", res);
+    } catch (error) {
+      console.warn("[login] Error:", error)
+  
+      return null;
+    }
+  }
+
+
 
 export default function Login() {
 
