@@ -1,32 +1,23 @@
-import React from "react";
-import { Navigate, Route, Router } from "react-router-dom";
-// import RouteGuard from "./components/RouteGuard";
- 
-//history
-import { history } from './helpers/history';
- 
-//pages
-import Logintest from "./pages/Logintest";
-// import HomePage from "./pages/Home"
-// import Login from "./pages/Login"
- 
-// function Routes() {
-//    return (
-//        <Router history={history}>
-//            <Routes>
-//                <RouteGuard
-//                    exact
-//                    path="/"
-//                    component={HomePage}
-//                />
-//                <Route
-//                    path="/login"
-//                    component={LoginPage}
-//                />
-//                <Redirect to="/" />
-//            </Routes>
-//        </Router>
-//    );
-// }
- 
-// export default Routes
+import React from 'react';
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import App from './App';
+import Logintest from './pages/Login';
+import HomePage from './pages/Home';
+
+const root = ReactDOM.createRoot(
+    document.getElementById("root")
+  );
+  root.render(
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route path="login" element={<Logintest />}>
+          <Route path="home" element={<HomePage />}>
+          </Route>
+          </Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );

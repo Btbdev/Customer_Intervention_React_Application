@@ -1,5 +1,40 @@
 import rocketLogo from '../rocketLogo.png';
 import '../App.css';
+import axios from '../api/axios';
+
+
+
+function makeRequest() {
+    let headers = {}
+    if (localStorage.token) {
+        headers = { 'Authorization': localStorage.token }
+        console.log("Token test?:", localStorage.token);
+    }
+    // fetch("/api/echo", { headers: headers })
+    //     .then((res) => {
+    //         if (res.status == 200) {
+    //             return res.text()
+    //         } else {
+    //             throw Error(res.statusText)
+    //         }
+    //     }).then(responseText => logResponse("requestResponse", responseText))
+    //     .catch(console.error)
+    }
+
+
+
+// const api = `your api here`
+// axios.get(api, { headers: {"Authorization" : `Bearer ${token}`} })
+//         .then(res => {
+//             console.log(res.data);
+//         this.setState({
+//             items: res.data,  /*set response data in items array*/
+//             isLoaded : true,
+//             redirectToReferrer: false
+//         });
+//     })
+
+
 
 // import React, { useState, useEffect } from 'react';
 
