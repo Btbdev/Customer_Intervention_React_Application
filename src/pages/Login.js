@@ -7,7 +7,7 @@ import axios from '../api/axios';
 
 // const LOGIN_URL = 'https://java-api.codeboxxtest.xyz';
 
-const Login = async (navigate) => {
+const Login = async (navigate, email, password) => {
 
     try {
         const requestOptions = {
@@ -18,7 +18,7 @@ const Login = async (navigate) => {
 
         console.log("requestOptions are:", requestOptions)
 
-        const res = await axios.post(`https://java-api.codeboxxtest.xyz/authenticate?email=customer1@business.com&password=password123`, requestOptions);
+        const res = await axios.post(`https://java-api.codeboxxtest.xyz/authenticate?email=${email}&password=${password}`, requestOptions);
 
         console.log("res is:", res)
 
@@ -80,8 +80,8 @@ const Logintest = () => {
         // setUser('');
         // setPwd('');
         // setSuccess(true);
-        // console.log("testMathieu:", setUser);
-        Login(navigate);
+       
+        Login(navigate, email, password);
     }
         
     return (
