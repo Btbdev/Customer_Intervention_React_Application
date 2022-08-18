@@ -1,15 +1,17 @@
+import * as React from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import rocketLogo from '../rocketLogo.png';
 import '../App.css';
 import axios from '../api/axios';
 
 
 
-function makeRequest() {
-    let headers = {}
-    if (localStorage.token) {
-        headers = { 'Authorization': localStorage.token }
-        console.log("Token test?:", localStorage.token);
-    }
+// function makeRequest() {
+//     let headers = {}
+//     if (localStorage.token) {
+//         headers = { 'Authorization': localStorage.token }
+//         console.log("Token test?:", localStorage.token);
+//     }
     // fetch("/api/echo", { headers: headers })
     //     .then((res) => {
     //         if (res.status == 200) {
@@ -19,7 +21,7 @@ function makeRequest() {
     //         }
     //     }).then(responseText => logResponse("requestResponse", responseText))
     //     .catch(console.error)
-    }
+    //  }
 
 
 
@@ -86,15 +88,60 @@ function makeRequest() {
 
 
 function HomePage() {
+
+    function interventions() {
+        // var xhttp = new XMLHttpRequest();
+        // xhttp.onreadystatechange = function() {
+        //  if (this.readyState == 4 && this.status == 200) {
+        //      // Access the result here
+        //     console.log(this.responseText)
+        //     //  alert(this.responseText);
+        //  }
+        let headers = {}
+        if (localStorage.token) {
+                    headers = {
+                        'content-type': 'application/json',
+                        // 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lcjFAYnVzaW5lc3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9qYXZhLWFwaS5jb2RlYm94eHRlc3QueHl6L2F1dGhlbnRpY2F0ZSJ9.QbJsJ-MZXWieFf_fcAkNWI3S9Skqd-yFVF3S2h-uhfo',
+                        // 'authenticate': 'email=customer1@business.com password=password123',
+                    }
+                    console.log("Token test - still there???:", headers);
+                }
+        
+        axios.get('https://java-api.codeboxxtest.xyz/authenticate?email=customer1@business.com&password=password123/interventions', 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lcjFAYnVzaW5lc3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9qYXZhLWFwaS5jb2RlYm94eHRlc3QueHl6L2F1dGhlbnRpY2F0ZSJ9.QbJsJ-MZXWieFf_fcAkNWI3S9Skqd-yFVF3S2h-uhfo').then(
+            (response) => {
+                //handle success
+                console.log(response);  
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            }, []);
+    
+        
+        // xhttp.open("GET", "/interventions", true);
+        // xhttp.setRequestHeader("Content-type", "application/json");
+        // xhttp.setRequestHeader("Bearer", headers);
+        // xhttp.send();
+};
+    
+    interventions()
+
+
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={rocketLogo} className="" alt="logo" width="25%" />
-        
-        
-            Home Page
-            </header>
-        </div>
+        <>
+            <div className="App">
+               
+            </div>
+            <div>
+                <h1>
+                    2e section du site <button onClick={interventions()}>Get Interventions</button>
+                </h1>
+            </div>
+        </>
     );
 }
 

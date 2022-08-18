@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Logintest from './pages/Login';
 import HomePage from './pages/Home';
+import { Form } from 'react-bootstrap';
 
 const root = ReactDOM.createRoot(
     document.getElementById("root")
@@ -12,12 +13,10 @@ const root = ReactDOM.createRoot(
   root.render(
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="login" element={<Logintest />}>
-          <Route path="home" element={<HomePage />}>
-          </Route>
-          </Route>
-        </Route>
+        <App />
+        <Route path="/" element={<HomePage />} /> 
+        <Route path="login" element={<Logintest />} />   
+        <Route path="form" element={<Form />} />
       </Routes>
     </BrowserRouter>
   );

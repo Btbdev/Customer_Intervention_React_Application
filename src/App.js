@@ -4,9 +4,10 @@ import rocketLogo from './rocketLogo.png';
 // import logo from './logo.svg';
 import './App.css';
 
-import 'axios';
+import axios from 'axios';
 import Logintest from './pages/Login';
-import HomePage from './pages/Home.js';
+import HomePage from './pages/Home';
+import Form from './pages/Form'
 
 
 
@@ -16,12 +17,14 @@ function App() {
   return (
     
       <div className="App">
-        <h1>Welcome to React Router</h1>
-        {/* <Routes>
-          <Route path="login" element={<Logintest />} />
-          <Route path="home" element={<HomePage />} />
-        </Routes> */}
-          <Logintest /> 
+        <header>
+        <img src={rocketLogo} className="App-logo" alt="logo" />
+        </header>
+        <Routes>
+          <Route path="/" element={<Logintest />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/form" element={<Form />} />
+        </Routes>
       </div>
         
     

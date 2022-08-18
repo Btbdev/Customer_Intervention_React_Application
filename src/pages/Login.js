@@ -13,7 +13,7 @@ const login = () => {
         const headers = {
         headers: {
             'content-type': 'application/json',
-            Authorization: 'Bearer' + localStorage.getItem('token')
+            'Authorization': 'Bearer' + localStorage.getItem('token')
 
           },
         }
@@ -65,7 +65,10 @@ const Logintest = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setUser('');
+        setPwd('');
         setSuccess(true);
+        console.log("testMathieu:", setUser);
         login();
 
 
@@ -112,7 +115,7 @@ const Logintest = () => {
                     <br />
                     <p>
                         
-                        <a href="./home">Go to Home</a>
+                        <Link to="/home">Home Page</Link>
                     </p>
                 </section>
             ) : (
@@ -121,7 +124,7 @@ const Logintest = () => {
                     
                     <h1>Customer Sign In</h1>
                     <div>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit} className="App-header">
                             <div>
                             <label htmlFor='username'>Username:</label>
                             <input 
