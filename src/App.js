@@ -5,7 +5,7 @@ import './App.css';
 
 import Logintest from './pages/Login';
 import HomePage from './pages/Home';
-// import Form from './pages/Form'
+import Form from './pages/Form'
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Logintest />} />
         <Route path="/home" element={<HomePage />} />
-        {/* <Route path="/form" element={<Form />} /> */}
+        <Route path="/form" element={<Form />} />
       </Routes>
     </div>
   );

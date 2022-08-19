@@ -3,9 +3,9 @@
 }
 
 .App-logo {
-  max-width: 35%;
+  max-width: 30%;
   pointer-events: none;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 
 /* @media (prefers-reduced-motion: no-preference) {
@@ -44,4 +44,47 @@ h1 {
   font-size: 35px;;
 }
 
+table {
+  border-collapse: collapse;
+  display: flex;
+  max-width: 75%;
+  margin: 2rem auto;
+}
 
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.App-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0px;
+
+}
+
+
+
+form.label {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  text-align: left;
+  padding: 10px 10px 10px 10px;
+  /* margin-left: 10px; */
+  background-color: rgb(206, 206, 235);
+}
+
+form.input {
+  text-align: center;
+  /* padding-left: 0px; */
+  /* padding-top:10px; */
+  /* justify-items: center; */
+}
+
+.form-field {
+  /* display: flex; */
+  background-color: #61dafb;
+  /* margin-left: 20px; */
+  /* text-align: center; */
+}
