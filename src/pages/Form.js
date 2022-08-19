@@ -1,16 +1,110 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-
 import '../App.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
-import { useState } from 'react';
+const requestOptions = {
+    headers: {
+        'content-type': 'application/json',
+        'Authorization': localStorage.getItem('bearerToken')
+    },
+}
+
+// To get the buildings of the current user
+const getBuildings = async () => {
+    try {
+        const res = await axios.get(`https://java-api.codeboxxtest.xyz/buildings/current`, requestOptions);
+        console.log("customer building Mathieu", res);
+        const currentBuildings = res.data[0].id
+        console.log("réussite:", currentBuildings)
+        localStorage.setItem("customerbuilding", currentBuildings)
+        console.log("réussite localStoragebuilding?:", currentBuildings)
+        return res;
+    } catch (err) {
+      console.warn("[testAuth] Error:", err)
+    }
+}
+
+// To get the batteries of the current user
+const getBatteries = async () => {
+    try {
+        const res = await axios.get(`https://java-api.codeboxxtest.xyz/buildings/1/batteries`, requestOptions);
+        console.log("customer battery Mathieu", res);
+        const currentBatteries = res.data[0].id
+        console.log("réussite:", currentBatteries)
+        localStorage.setItem("customerbatteries", currentBatteries)
+        console.log("réussite localStoragebattery?:", currentBatteries)
+        return res;
+    } catch (err) {
+      console.warn("[testAuth] Error:", err)
+    }
+}
+
+// To get the columns of the current user
+const getColumns = async () => {
+    try {
+        const res = await axios.get(`https://java-api.codeboxxtest.xyz/batteries/1/columns`, requestOptions);
+        console.log("customer column Mathieu", res);
+        const currentColumns = res.data[0].id
+        console.log("réussite:", currentColumns)
+        localStorage.setItem("customercolumns", currentColumns)
+        console.log("réussite localStoragecolumn?:", currentColumns)
+        return res;
+    } catch (err) {
+      console.warn("[testAuth] Error:", err)
+    }
+}
+
+// To get the elevators of the current user
+const getElevators = async () => {
+    try {
+        const res = await axios.get(`https://java-api.codeboxxtest.xyz/columns/1/elevators`, requestOptions);
+        console.log("customer elevators Mathieu", res);
+        const currentElevators = res.data
+        console.log("réussite:", currentElevators)
+        localStorage.setItem("customerelevators", currentElevators)
+        console.log("réussite localStorageelevators?:", currentElevators)
+        return res;
+    } catch (err) {
+      console.warn("[testAuth] Error:", err)
+    }
+}
+
+
+
 
 
 
 
 
 function Form() {
+
+    const currentBuildings = getBuildings()
+   
+    useEffect(() => {
+        getBuildings();
+    })
+
+    const currentBatteries = getBatteries()
+   
+    useEffect(() => {
+        getBatteries();
+    })
+
+    const currentColumns = getColumns()
+   
+    useEffect(() => {
+        getColumns();
+    })
+
+    const currentElevators = getElevators()
+   
+    useEffect(() => {
+        getElevators();
+    })
+  
     const [inputs, setInputs] = useState("");
 
     const handleChange = (event) => {
@@ -30,39 +124,35 @@ function Form() {
             <form onSubmit={handleSubmit}>
             <fieldset>
                 <label> Author:
-                    <input
-                    type='text'
-                    name='author'
-                    placeholder='Author'
-                    className='form-field'
-                    value={inputs.author || ""}
-                    onChange={handleChange}
-                    />
+                    <select value={"Author"}>
+                    <option value="choose the author"></option>
+                    </select>
                 </label>
                 <label> Customer:
                     <input type='text'
                     name='customer'
                     placeholder='Customer'
                     className='form-field'
-                    value={inputs.customer || ""}
+                    value={localStorage.getItem("customerID") || ""}
                     onChange={handleChange}
                     />
                 </label>
+                
                 <label> Building:
-                    <input type='text'
-                    name='building'
-                    placeholder='Building'
-                    className='form-field'
-                    value={inputs.building || ""}
-                    onChange={handleChange}
-                    />
+                    <select>
+                        <option value="1">One</option>
+                        <option value="2">two</option>
+                        <option value="3">three</option>
+                    </select>
+                    
                 </label>
+                
                 <label> Battery:
                     <input type='text'
                     name='battery'
                     placeholder='Battery'
                     className='form-field'
-                    value={inputs.battery || ""}
+                    value={localStorage.getItem("customerbatteries") || ""}
                     onChange={handleChange}
                     />
                 </label>
@@ -71,7 +161,7 @@ function Form() {
                     name='column'
                     placeholder='Column'
                     className='form-field'
-                    value={inputs.column || ""}
+                    value={localStorage.getItem("customercolumns") || ""}
                     onChange={handleChange}
                     />
                 </label>
@@ -80,43 +170,22 @@ function Form() {
                     name='elevator'
                     placeholder='Elevator'
                     className='form-field'
-                    value={inputs.elevator || ""}
+                    value={localStorage.getItem("customerelevators") || ""}
                     onChange={handleChange}
                     />
                 </label>
                 <label> Employee:
-                    <input type='text' 
-                    name='employee'
-                    placeholder='Employee'
-                    className='form-field'
-                    value={inputs.employee || ""}
-                    onChange={handleChange}
-                    />
-                </label>
-                <label> Result:
-                    <input type='text' 
-                    name='result'
-                    placeholder='Result'
-                    className='form-field'
-                    value={inputs.result || ""}
-                    onChange={handleChange}
-                    />
+                    <select value={"Author"}>
+                    <option value="choose the author"></option>
+                    </select>
+                    {/* <input onChange={handleChange} /> */}
                 </label>
                 <label> Report:
                     <input type='text'
                     name='report'
                     placeholder='Report'
                     className='form-field'
-                    value={inputs.report || ""}
-                    onChange={handleChange}
-                    />
-                </label>
-                <label> Status:
-                    <input type='text' 
-                    name='status'
-                    placeholder='Status'
-                    className='form-field'
-                    value={inputs.status || ""}
+                    value={""}
                     onChange={handleChange}
                     />
                 </label>

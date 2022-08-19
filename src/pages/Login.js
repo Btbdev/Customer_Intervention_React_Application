@@ -36,6 +36,7 @@ const Login = async (navigate, email, password) => {
     }
 }
 
+
 // const testAuth = async () => {
 //     try {
 //         const requestOptions = {
@@ -77,16 +78,12 @@ const Logintest = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // setUser('');
-        // setPwd('');
-        // setSuccess(true);
        
         Login(navigate, email, password);
     }
         
     return (
         <section>
-            {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assetlive">{errMsg}</p> */}
             
             <h1>Customer Sign In</h1>
             <div>
@@ -117,7 +114,7 @@ const Logintest = () => {
                     </div>
                     <button className="">Sign In</button>
                 </form>
-                {/* <button onClick={testAuth}>Test Authorization</button> */}
+                
             </div>
         </section>
     )

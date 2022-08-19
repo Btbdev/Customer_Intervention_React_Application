@@ -65,17 +65,17 @@ table th, table td {
 
 
 
-form.label {
+label {
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
   text-align: left;
   padding: 10px 10px 10px 10px;
   /* margin-left: 10px; */
-  background-color: rgb(206, 206, 235);
+  background-color: white;
 }
 
-form.input {
+input {
   text-align: center;
   /* padding-left: 0px; */
   /* padding-top:10px; */
@@ -84,7 +84,7 @@ form.input {
 
 .form-field {
   /* display: flex; */
-  background-color: #61dafb;
+  background-color: white;
   /* margin-left: 20px; */
   /* text-align: center; */
 }

@@ -22,24 +22,72 @@ const getInterventions = async (setInterventions) => {
     }
 }
 
+
+// à mettre current User dans customer field du form
+const getCurrent = async () => {
+    try {
+        const res = await axios.get(`https://java-api.codeboxxtest.xyz/customers/current`, requestOptions);
+        console.log("customer test Mathieu", res);
+        const currentUser = res.data.id
+        console.log("réussite:", currentUser)
+        localStorage.setItem("customerID", currentUser)
+        console.log("réussite localStorage?:", currentUser)
+        return res;
+    } catch (err) {
+      console.warn("[testAuth] Error:", err)
+    }
+}
+
+// à mettre dans les champs du form
+// const getBuildings = async ("custoimerid à passer") => {
+//     try {
+//         const res = await axios.get(`https://java-api.codeboxxtest.xyz/buildings`, requestOptions);
+
+//         return res;
+//     } catch (err) {
+//       console.warn("[testAuth] Error:", err)
+//     }
+// }
+// const buildings = await getBuildings() //dans un useEffect
+
 function HomePage() {
+
+    const currentUser = getCurrent() 
+   
+    useEffect(() => {
+        getCurrent();
+    })
+
+
+
+
+
     const [interventions, setInterventions] = useState([]);
 
     useEffect(() => {
         getInterventions(setInterventions);
     }, []);   
         
-    console.log("interventions are:", interventions);
+    // console.log("interventions are:", interventions);
     
+    // interventions.map((e) => {
+    //     console.log('intervention is:', e);
+    // })
+
+
+
     const column = [
+        { heading: 'ID', value: interventions.length > 0 && interventions[0].id },
         { heading: 'Author', value: 'author' },
         { heading: 'Battery', value: 'battery' },
         { heading: 'Building', value: 'building' },
         { heading: 'Column', value: 'column' },
         { heading: 'Customer', value: 'customer' },
-        { heading: 'Result', value: 'result' },
+        { heading: 'Company Name', value: 'customer.company_name' },
+        { heading: 'Result', value: 'result:' },
     ]
-
+console.log(column)
+// à enlever probablement
     const Table = ({ data, column }) => {
         return (
             <table>
@@ -59,10 +107,11 @@ function HomePage() {
 
     const TableHeadItem = ({ item }) => <th>{ item.heading }</th>
     
-    const TableRow = ({ item }) => {
-        console.log("contenu :", item['result']);
+    const TableRow = ({ item, column }) => {
+        // console.log("contenu :", item['result']);
         <tr>
             {column.map((columnItem, index) => {
+                // console.log("Mathieu:", columnItem);
                 return <td>{ item[`${columnItem.value}`] }</td>
             })}
         </tr>
@@ -72,19 +121,20 @@ function HomePage() {
             
     <>
             <div>
-                <h1>test Mathieu</h1>
+                <h1>Customer interventions</h1>
 
-                <Table data={interventions} column={column} />
+                {/* <Table data={interventions} column={column} /> */}
 
-                {/* {interventions.map(item => {
-                    return <p>{item.id} - {item.intervention_started} - {item.intervention_ended} - {item.battery} - {item.result} </p>
-                })}  */}
+                {interventions.map(item => {
+                    return <p>| ID: {item.id} | Building ID: {item.building} | Battery ID: {item.battery} | Column ID: {item.column}
+                    | Elevator ID: {item.elevator} | Result: {item.result} | status: {item.status} |</p>
+                })} 
                     
             </div>
            
             <div className="App">    
                 <p>             
-                    <Link to="/form">Make your request</Link>
+                    <Link to="/form">Make a new request</Link>
                 </p>
             </div>
     </>
@@ -93,154 +143,3 @@ function HomePage() {
 }
 
 export default HomePage
-  
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Test for automatic table filling
-
-// const column = [
-//     { heading: 'Author', value: 'author' },
-//     { heading: 'Battery', value: 'battery' },
-//     { heading: 'result', value: 'result' },
-// ]
-
-
-
-// const Table = ({ data, column }) => {
-//     return (
-//         <table>
-//             <thead>
-//                 <tr>
-//                     {column.map((item, index) => <TableHeadItem item={ item } />)}
-//                 </tr>
-//             </thead>
-//             <tbody>
-//                 <tr>
-//                     {data.map((item, index) => <TableRow item={ item } column={ column } />)}
-//                 </tr>
-//             </tbody>
-//         </table>
-//     )
-// }
-
-// const TableHeadItem = ({ item }) => <th>{ item.heading }</th>
-// const TableRow = ({ item }) => {
-//     <tr>
-//         {column.map((columnItem, index) => {
-//             return <td>{ item[`${columnItem.value}`] }</td>
-//         })}
-//     </tr>
-// }
-//     <div>
-//         <Table data={interventions} column={column} />
-//     </div>
-//////////////////////////////////////////////////////////////////////////////////////////////
-// test hardcoded table filling
-
-//     const data = React.useMemo(() =>
-//         [
-        
-        
-//         { heading: "Author", value: "interventions" },
-        
-        
-//         {
-//         name: 'Michele Castillo',
-//         address: '637 Kyle Street, Fullerton, NE 68638',
-//         date: '07/11/2020',
-//         order: '58418278790810',
-//         },
-//         {
-//         name: 'Eric Ferris',
-//         address: '906 Hart Country Lane, Toccoa, GA 30577',
-//         date: '07/10/2020',
-//         order: '81534454080477',
-//         },
-//         {
-//         name: 'Gloria Noble',
-//         address: '2403 Edgewood Avenue, Fresno, CA 93721',
-//         date: '07/09/2020',
-//         order: '20452221703743',
-//         },
-//         {
-//         name: 'Darren Daniels',
-//         address: '882 Hide A Way Road, Anaktuvuk Pass, AK 99721',
-//         date: '07/07/2020',
-//         order: '22906126785176',
-//         },
-//         {
-//         name: 'Ted McDonald',
-//         address: '796 Bryan Avenue, Minneapolis, MN 55406',
-//         date: '07/07/2020',
-//         order: '87574505851064',
-//         },
-//         ],
-//         []
-//     )
-    
-//     const columns = React.useMemo(
-//         () => [
-//         {
-//         Header: 'Customer Intervention',
-//         columns: [
-//         {
-//         Header: 'Author',
-//         accessor: 'id',
-//         },
-//         {
-//         Header: 'Battery ID',
-//         accessor: 'address',
-//         },
-//         ],
-//         },
-//         {
-//         Header: 'Order Info',
-//         columns: [
-//         {
-//         Header: 'Date',
-//         accessor: 'date',
-//         },
-//         {
-//         Header: 'Elevator ID',
-//         accessor: 'elevator.id',
-//         },
-//         ],
-//         },
-//         ],
-//         []
-//     )
-
-//     const {
-//         getTableProps,
-//         getTableBodyProps,
-//         headerGroups,
-//         rows,
-//         prepareRow,
-//        } = useTable({ columns, data })
-
-//        return (
-// <>
-
-//         <table {...getTableProps()}>
-//           <thead>
-//             {headerGroups.map(headerGroup => (
-//               <tr {...headerGroup.getHeaderGroupProps()}>
-//                 {headerGroup.headers.map(column => (
-//                   <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-//                 ))}
-//               </tr>
-//             ))}
-//           </thead>
-//           <tbody {...getTableBodyProps()}>
-//             {rows.map(row => {
-//               prepareRow(row)
-//               return (
-//                 <tr {...row.getRowProps()}>
-//                   {row.cells.map(cell => {
-//                     return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-//                   })}
-//                 </tr>
-//               )
-//             })}
-//           </tbody>
-//         </table>
