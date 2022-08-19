@@ -14,11 +14,11 @@
     "react-table": "^7.8.0",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "https://java-api.codeboxxtest.xyz",
   "engines": {
     "node": "18.3.0",
     "npm": "8.11.0"
   },
+  "proxy": "https://java-api.codeboxxtest.xyz",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
