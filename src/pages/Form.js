@@ -73,12 +73,6 @@ const getElevators = async () => {
 }
 
 
-
-
-
-
-
-
 function Form() {
 
     const currentBuildings = getBuildings()
@@ -178,7 +172,6 @@ function Form() {
                     <select value={"Author"}>
                     <option value="choose the author"></option>
                     </select>
-                    {/* <input onChange={handleChange} /> */}
                 </label>
                 <label> Report:
                     <input type='text'
@@ -206,34 +199,3 @@ function Form() {
 }
 
 export default Form
-
-
-{/* <fieldset>
-                                <div class="field">
-                                    <label></label> customer_id, class: "" >
-                                    <select_tag "customer", options_from_collection_for_select(Customer.all, "id", "id"), prompt: "Customer", class: "col-md-8">
-                                    <select_tag "building", options_from_collection_for_select(Building.all, "id", "customer_id"), prompt: "", class: "col-md-8">
-                                    <select_tag "battery", options_from_collection_for_select(Battery.all, "id", "building_id"), prompt: "", class: "col-md-8">
-                                    <select_tag "column", options_from_collection_for_select(Column.all, "id", "battery_id"), prompt: "", class: "col-md-8">
-                                    <select_tag "elevator", options_from_collection_for_select(Elevator.all, "id", "column_id"), prompt: "", class: "col-md-8">
-                                </div>
-
-                                <div class="field">
-                                    <form.label employee />
-                                    <form.select id class="col-md-8" />
-                                </div>
-
-                                <div class="field">
-                                    <form.label description />
-                                    <form.text_area report class="col-md-8" />
-                                </div>
-
-                                <div class="actions">
-                                <form submit />
-                                </div>
-                            </fieldset>
-                    
-                            </div>
-                        </div>
-                    </div>
-                    </section> */}
