@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import * as React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import rocketLogo from './rocketLogo.png';
 import './App.css';
+
+import Logintest from './pages/Login';
+import HomePage from './pages/Home';
+import Form from './pages/Form'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          This is my new React app !
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <img src={rocketLogo} className="App-logo" alt="logo" />
       </header>
+      <Routes>
+        <Route path="/" element={<Logintest />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/form" element={<Form />} />
+      </Routes>
     </div>
   );
 }
