@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Component } from 'react';
+
 
 
 const requestOptions = {
@@ -16,11 +18,8 @@ const requestOptions = {
 const getBuildings = async () => {
     try {
         const res = await axios.get(`https://java-api.codeboxxtest.xyz/buildings/current`, requestOptions);
-        console.log("customer building Mathieu", res);
         const currentBuildings = res.data[0].id
-        console.log("réussite:", currentBuildings)
         localStorage.setItem("customerbuilding", currentBuildings)
-        console.log("réussite localStoragebuilding?:", currentBuildings)
         return res;
     } catch (err) {
       console.warn("[testAuth] Error:", err)
@@ -31,11 +30,8 @@ const getBuildings = async () => {
 const getBatteries = async () => {
     try {
         const res = await axios.get(`https://java-api.codeboxxtest.xyz/buildings/1/batteries`, requestOptions);
-        console.log("customer battery Mathieu", res);
         const currentBatteries = res.data[0].id
-        console.log("réussite:", currentBatteries)
         localStorage.setItem("customerbatteries", currentBatteries)
-        console.log("réussite localStoragebattery?:", currentBatteries)
         return res;
     } catch (err) {
       console.warn("[testAuth] Error:", err)
@@ -46,11 +42,8 @@ const getBatteries = async () => {
 const getColumns = async () => {
     try {
         const res = await axios.get(`https://java-api.codeboxxtest.xyz/batteries/1/columns`, requestOptions);
-        console.log("customer column Mathieu", res);
         const currentColumns = res.data[0].id
-        console.log("réussite:", currentColumns)
         localStorage.setItem("customercolumns", currentColumns)
-        console.log("réussite localStoragecolumn?:", currentColumns)
         return res;
     } catch (err) {
       console.warn("[testAuth] Error:", err)
@@ -61,11 +54,8 @@ const getColumns = async () => {
 const getElevators = async () => {
     try {
         const res = await axios.get(`https://java-api.codeboxxtest.xyz/columns/1/elevators`, requestOptions);
-        console.log("customer elevators Mathieu", res);
-        const currentElevators = res.data
-        console.log("réussite:", currentElevators)
-        localStorage.setItem("customerelevators", currentElevators)
-        console.log("réussite localStorageelevators?:", currentElevators)
+        const currentElevators = res.data[0].id
+        localStorage.setItem("customerelevators", ...currentElevators)                 
         return res;
     } catch (err) {
       console.warn("[testAuth] Error:", err)
@@ -101,21 +91,40 @@ function Form() {
   
     const [inputs, setInputs] = useState("");
 
-    const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs(values => ({...values, [name]: value}))
+    const url = ("https://java-api.codeboxxtest.xyz/interventions/new", requestOptions)
+
+    function handleChange(e) {
+        const newinputs = {...inputs}
+        newinputs[e.target.id] = e.target.value
+        setInputs(newinputs);
+        console.log(newinputs);
     }
+    
     const handleSubmit = (event) => {
         event.preventDefault();
-        alert(`The name you entered was: ${inputs}`)
+        axios.post(url, {
+           author: inputs.author,
+           customer: inputs.customer,
+           building: inputs.building,
+           battery: inputs.battery,
+           column: inputs.column,
+           elevator: inputs.elevator,
+           employee: inputs.employee,
+           report: inputs.report        
+        })
+        .then(res => {
+            return res
+        })
+        .catch((error) => {
+            return error;
+        });
     }
-
 
     return (
         <> 
+        <h2>New Intervention</h2>
         <div className='App-wrapper'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => handleSubmit(e)}>
             <fieldset>
                 <label> Author:
                     <select value={"Author"}>
@@ -128,17 +137,18 @@ function Form() {
                     placeholder='Customer'
                     className='form-field'
                     value={localStorage.getItem("customerID") || ""}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e)}
                     />
                 </label>
                 
                 <label> Building:
-                    <select>
-                        <option value="1">One</option>
-                        <option value="2">two</option>
-                        <option value="3">three</option>
-                    </select>
-                    
+                    <input type='text'
+                    name='building'
+                    placeholder='Building'
+                    className='form-field'
+                    value={localStorage.getItem("customerbuilding") || ""}
+                    onChange={(e) => handleChange(e)}
+                    />
                 </label>
                 
                 <label> Battery:
@@ -147,7 +157,7 @@ function Form() {
                     placeholder='Battery'
                     className='form-field'
                     value={localStorage.getItem("customerbatteries") || ""}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e)}
                     />
                 </label>
                 <label> Column:
@@ -156,7 +166,7 @@ function Form() {
                     placeholder='Column'
                     className='form-field'
                     value={localStorage.getItem("customercolumns") || ""}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e)}
                     />
                 </label>
                 <label> Elevator:
@@ -165,12 +175,12 @@ function Form() {
                     placeholder='Elevator'
                     className='form-field'
                     value={localStorage.getItem("customerelevators") || ""}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e)}
                     />
                 </label>
                 <label> Employee:
-                    <select value={"Author"}>
-                    <option value="choose the author"></option>
+                    <select value={"Employee"}>
+                    <option value="choose the employee"></option>
                     </select>
                 </label>
                 <label> Report:
@@ -178,8 +188,8 @@ function Form() {
                     name='report'
                     placeholder='Report'
                     className='form-field'
-                    value={""}
-                    onChange={handleChange}
+                    value={inputs.report}
+                    onChange={(e) => handleChange(e)}
                     />
                 </label>
                 <input type='submit' />

@@ -26,6 +26,36 @@
   text-align: left;
 }
 
+.App-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  
+}
+
+.App-form label {
+  
+  text-align: center;
+} 
+
+.App-form input {
+ 
+  height: 30px;
+}
+
+.loginButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 175px;
+  background-color: white;
+  padding-top: 0px;
+  margin-top: 20px;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -44,18 +74,6 @@ h1 {
   font-size: 35px;;
 }
 
-table {
-  border-collapse: collapse;
-  display: flex;
-  max-width: 75%;
-  margin: 2rem auto;
-}
-
-table th, table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
 .App-wrapper {
   display: flex;
   justify-content: center;
@@ -63,15 +81,11 @@ table th, table td {
 
 }
 
-
-
 label {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   text-align: left;
   padding: 10px 10px 10px 10px;
-  /* margin-left: 10px; */
   background-color: white;
 }
 

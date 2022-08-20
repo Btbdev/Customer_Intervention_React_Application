@@ -1,11 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import AuthContext from '../context/AuthProvider.js';
-
 import axios from '../api/axios';
-import { Link } from 'react-router-dom';
 
-// const LOGIN_URL = 'https://java-api.codeboxxtest.xyz';
 
 const Login = async (navigate, email, password) => {
 
@@ -36,45 +32,18 @@ const Login = async (navigate, email, password) => {
     }
 }
 
-
-// const testAuth = async () => {
-//     try {
-//         const requestOptions = {
-//             headers: {
-//                 'content-type': 'application/json',
-//                 'Authorization': localStorage.getItem('bearerToken')
-//             },
-//         }
-
-//         console.log("requestOptions are:", requestOptions)
-
-//         const res = await axios.get(`https://java-api.codeboxxtest.xyz/interventions`, requestOptions);
-
-//         console.log("[testAuth] res is:", res)
-
-//     } catch (err) {
-//       console.warn("[testAuth] Error:", err)
-//     }
-// }
   
 const Logintest = () => {
-    // const { setAuth } = useContext(AuthContext);
+    
     const userRef = useRef();
     let navigate = useNavigate();
-    // const errRef = useRef();
-
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-    // const[errMsg, setErrMsg] = useState('');
-    // const[success, setSuccess] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
     }, [])
 
-    // useEffect(() => {
-    //     setErrMsg('');
-    // }, [user, pwd])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -87,9 +56,9 @@ const Logintest = () => {
             
             <h1>Customer Sign In</h1>
             <div>
-                <form onSubmit={handleSubmit} className="App-header">
+                <form onSubmit={handleSubmit} className="App-form">
                     <div>
-                        <label htmlFor='username'>Email:</label>
+                        <label className="" htmlFor='username'>Email:</label>
                         <input 
                             type="text"
                             id="username"
@@ -112,7 +81,7 @@ const Logintest = () => {
                             required
                         />
                     </div>
-                    <button className="">Sign In</button>
+                    <button className="loginButton">Sign In</button>
                 </form>
                 
             </div>
