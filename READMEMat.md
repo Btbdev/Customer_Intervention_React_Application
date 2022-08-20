@@ -1,2 +1,0 @@
-# Customer_Intervention_React_Application
-test
