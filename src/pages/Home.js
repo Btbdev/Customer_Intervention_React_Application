@@ -22,32 +22,17 @@ const getInterventions = async (setInterventions) => {
 }
 
 
-// à mettre current User dans customer field du form
 const getCurrent = async () => {
     try {
         const res = await axios.get(`https://java-api.codeboxxtest.xyz/customers/current`, requestOptions);
-        console.log("customer test Mathieu", res);
         const currentUser = res.data.id
-        console.log("réussite:", currentUser)
         localStorage.setItem("customerID", currentUser)
-        console.log("réussite localStorage?:", currentUser)
         return res;
     } catch (err) {
       console.warn("[testAuth] Error:", err)
     }
 }
 
-// à mettre dans les champs du form
-// const getBuildings = async ("custoimerid à passer") => {
-//     try {
-//         const res = await axios.get(`https://java-api.codeboxxtest.xyz/buildings`, requestOptions);
-
-//         return res;
-//     } catch (err) {
-//       console.warn("[testAuth] Error:", err)
-//     }
-// }
-// const buildings = await getBuildings() //dans un useEffect
 
 function HomePage() {
 
@@ -62,12 +47,6 @@ function HomePage() {
     useEffect(() => {
         getInterventions(setInterventions);
     }, []);   
-        
-    // console.log("interventions are:", interventions);
-    
-    // interventions.map((e) => {
-    //     console.log('intervention is:', e);
-    // })
 
         return (
             
@@ -75,7 +54,8 @@ function HomePage() {
             <div>
                 <h1>Customer interventions</h1>
 
-                {interventions.map(item => {
+                {                
+                interventions.map(item => {
                     return <p>| ID: {item.id} | Building ID: {item.building} | Battery ID: {item.battery} | Column ID: {item.column}
                     | Elevator ID: {item.elevator} | Result: {item.result} | status: {item.status} |</p>
                 })} 

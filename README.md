@@ -1,3 +1,36 @@
+Customer_Intervention_React_Application
+
+This project build with React is allowinf the customer to access their personnal information of the database, through an API. 
+
+By login in, the customer will be able to see its personnal interventions and make a new request about its building equipments.
+
+*** To login in ***
+Email : customer1@business.com
+password: password123
+
+On the home page, the customer will se all the interventions linked to its customer ID.
+
+And on the form page, the same customer will be able to make new interventions on its buildings, elevators, columns etc...
+
+
+| Login page |
+
+<img src="src\loginPage.png" alt="login"/>
+
+| Home page |
+
+<img src="src\homePage.png" alt="home"/>
+
+| Form page |
+
+<img src="src\formPage.png" alt="form"/>
+
+
+To see all the end points available, please visit the following website : https://java-api.codeboxxtest.xyz/
+
+
+Just below, you will find the main command to manage the application from your terminal.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
